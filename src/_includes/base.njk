@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+  {% if noindex %}<meta name="robots" content="noindex">{% endif %}
+  {% if previewImage %}
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ page.url | htmlBaseUrl(site.origin) }}">
+  <meta property="og:image" content="{{ previewImage | htmlBaseUrl(site.origin) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {% endif %}
+  {% block head %}{% endblock %}
+  <style>{% include "style.css" %}</style>
+</head>
+<body>
+{{ content | safe }}
+</body>
+</html>

@@ -1,0 +1,62 @@
+# Made-up player for previewing the design with every section filled in.
+# Never published. To add a teammate, copy kendal.yaml (not this one) and rename it.
+
+published: false
+searchable: false
+updated: 2026-11-01
+
+name: Sample Player
+grad_year: 2029
+positions: SS / 2B
+bats: R
+throws: R
+height: 5'7"
+high_school: Example High School, Portland, OR
+club_team: Fireballs 16U – Manley
+jersey: 7
+headline: Quick first step, strong arm from the hole, leadoff hitter.
+
+photo:
+photo_alt:
+
+video:
+  youtube: https://www.youtube.com/watch?v=aqz-KE-bpKQ
+  link: https://www.hudl.com/
+
+gpa: 3.9
+gpa_note: unweighted
+tests:
+  PSAT: 1250
+
+stats_as_of: 2026-10-15
+stats_note: Fall 2026 club season · GameChanger
+stats:
+  Hitting:
+    AVG: .412
+    OBP: .489
+    SLG: .588
+    OPS: 1.077
+    SB: 14
+  Fielding:
+    FPCT: .962
+
+schedule:
+  - name: Winter Classic
+    start: 2027-01-15
+    end: 2027-01-18
+    location: Las Vegas, NV
+  - name: Triple Crown Colorado Sparkler
+    start: 2027-06-27
+    end: 2027-07-04
+    location: Denver metro, CO
+    division: Open
+    featured: true
+
+contact:
+  Sample: sample.player@example.com
+  Parent: parent@example.com
+
+links:
+  Instagram: https://www.instagram.com/
+  SportsRecruits: https://sportsrecruits.com/
+  GameChanger:

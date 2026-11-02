@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: Fireballs Softball Recruiting
+noindex: true
+---
+{%- set home = players | selectattr("slug", "equalto", site.homePlayer) | first -%}
+{% if home %}
+{#- Relative links so the redirect works under the github.io sub-path and on a custom domain. #}
+<script>location.replace("./{{ home.slug }}/");</script>
+<noscript><meta http-equiv="refresh" content="0; url=./{{ home.slug }}/"></noscript>
+<main class="wrap"><p><a href="./{{ home.slug }}/">Go to {{ home.name }}'s page</a></p></main>
+{% else %}
+<main class="wrap"><h1>Coming soon</h1></main>
+{% endif %}

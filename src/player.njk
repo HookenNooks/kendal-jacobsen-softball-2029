@@ -1,0 +1,161 @@
+---
+pagination:
+  data: players
+  size: 1
+  alias: p
+permalink: "/{{ p.slug }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ p.name }} · Softball · Class of {{ p.grad_year }}"
+  description: "{{ p.name }}, class of {{ p.grad_year }}{% if p.positions %}, {{ p.positions }}{% endif %}{% if p.club_team %}, {{ p.club_team }}{% endif %}. Highlights, stats, schedule and contact."
+  previewImage: "{% if p.photo %}/assets/photos/{{ p.photo }}{% endif %}"
+  noindex: "{% if not p.searchable or not p.published %}true{% endif %}"
+---
+{% if not p.published %}<div class="draft">Draft preview: not on the live site (published: false)</div>{% endif %}
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    {% if p.photo %}
+    <img class="hero-photo" src="/assets/photos/{{ p.photo }}" alt="{{ p.photo_alt or p.name }}" width="160" height="200">
+    {% endif %}
+    <div>
+      <p class="eyebrow">Class of {{ p.grad_year }}{% if p.jersey %} · #{{ p.jersey }}{% endif %}</p>
+      <h1>{{ p.name }}</h1>
+      <p class="hero-line">{{ [p.positions, p.club_team] | select | join(" · ") }}</p>
+      {% if p.headline %}<p class="headline">{{ p.headline }}</p>{% endif %}
+      {% if p.mainEmail %}
+      {% set e = p.mainEmail | emailParts %}
+      <p><a class="btn btn-primary js-email" href="#contact" data-u="{{ e.user }}" data-d="{{ e.domain }}">Email {{ p.firstName }}</a></p>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  {% if p.video.youtube or p.video.link %}
+  <section aria-label="Highlight video">
+    {% if p.video.youtube %}
+    <button class="video js-video" type="button" data-id="{{ p.video.youtube }}" aria-label="Play highlight video">
+      <img src="https://i.ytimg.com/vi/{{ p.video.youtube }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+      <span class="play" aria-hidden="true"></span>
+    </button>
+    {% endif %}
+    {% if p.video.link %}<p><a class="btn" href="{{ p.video.link }}" rel="noopener">More video</a></p>{% endif %}
+  </section>
+  {% endif %}
+
+  {% set basics = [
+    ["Grad year", p.grad_year],
+    ["Position", p.positions],
+    ["Bats / Throws", [p.bats, p.throws] | select | join(" / ")],
+    ["Height", p.height],
+    ["High school", p.high_school],
+    ["Club team", p.club_team],
+    ["Jersey", ("#" + p.jersey) if p.jersey else ""]
+  ] %}
+  <section>
+    <h2>Basics</h2>
+    <dl class="facts">
+      {% for row in basics %}{% if row[1] %}
+      <div><dt>{{ row[0] }}</dt><dd>{{ row[1] }}</dd></div>
+      {% endif %}{% endfor %}
+    </dl>
+  </section>
+
+  {% if p.gpa or (p.tests | length) %}
+  <section>
+    <h2>Academics</h2>
+    <dl class="facts">
+      {% if p.gpa %}<div><dt>GPA</dt><dd>{{ p.gpa }}{% if p.gpa_note %} <small>{{ p.gpa_note }}</small>{% endif %}</dd></div>{% endif %}
+      {% for test, score in p.tests %}<div><dt>{{ test }}</dt><dd>{{ score }}</dd></div>{% endfor %}
+    </dl>
+  </section>
+  {% endif %}
+
+  {% if p.stats | length %}
+  <section>
+    <h2>Stats</h2>
+    {% if p.stats_note or p.stats_as_of %}
+    <p class="muted">{{ p.stats_note }}{% if p.stats_note and p.stats_as_of %} · {% endif %}{% if p.stats_as_of %}as of {{ p.stats_as_of | longDate }}{% endif %}</p>
+    {% endif %}
+    {% for group, items in p.stats %}
+    <h3>{{ group }}</h3>
+    <dl class="stats">
+      {% for label, value in items %}<div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>{% endfor %}
+    </dl>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if p.schedule | length %}
+  <section class="js-schedule">
+    <h2>Upcoming tournaments</h2>
+    <ul class="events">
+      {% for e in p.schedule %}
+      <li class="event{% if e.featured %} featured{% endif %}" data-end="{{ e.end }}">
+        {% if e.featured %}<span class="tag">Featured</span>{% endif %}
+        <strong>{{ e.name }}</strong>
+        <span>{{ e.start | dateRange(e.end) }}</span>
+        <span class="muted">{{ [e.location, (e.division + " division") if e.division else ""] | select | join(" · ") }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if p.contact | length %}
+  <section id="contact">
+    <h2>Contact</h2>
+    <ul class="contact">
+      {% for label, email in p.contact %}
+      {% set e = email | emailParts %}
+      <li><span class="muted">{{ label }}</span>
+        <a class="js-email" href="#contact" data-u="{{ e.user }}" data-d="{{ e.domain }}">{{ e.user }} [at] {{ e.domain }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if p.links | length %}
+  <section>
+    <h2>Profiles</h2>
+    <p class="links">
+      {% for label, url in p.links %}<a class="btn" href="{{ url }}" rel="noopener">{{ label }}</a>{% endfor %}
+    </p>
+  </section>
+  {% endif %}
+
+</main>
+
+<footer class="wrap muted">Updated {{ p.updated | longDate }}</footer>
+
+<script>
+// Build email links in the browser so the page source has no plain addresses.
+document.querySelectorAll(".js-email").forEach(function (a) {
+  var addr = a.dataset.u + "@" + a.dataset.d;
+  a.href = "mailto:" + addr;
+  if (a.textContent.indexOf("[at]") !== -1) a.textContent = addr;
+});
+// Load YouTube only when tapped, so the page stays fast.
+document.querySelectorAll(".js-video").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.id + "?autoplay=1&playsinline=1&rel=0";
+    f.title = "Highlight video";
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    f.className = "video";
+    b.replaceWith(f);
+  });
+});
+// Hide tournaments that ended since the last update.
+(function () {
+  var today = new Date().toISOString().slice(0, 10);
+  document.querySelectorAll(".event").forEach(function (li) {
+    if (li.dataset.end < today) li.remove();
+  });
+  var s = document.querySelector(".js-schedule");
+  if (s && !s.querySelector(".event")) s.remove();
+})();
+</script>

@@ -1,0 +1,72 @@
+# Kendal's recruiting page. Everything on her page comes from this file.
+#
+# - Leave a field blank to hide it. A section with nothing filled in hides itself.
+# - Lines starting with # are notes; they never show on the page.
+# - Dates are written YYYY-MM-DD.
+# - Privacy: email only. No phone numbers, home address, or school schedule.
+
+published: false      # set to true when the real content is in; until then she isn't on the live site
+searchable: true      # false = ask Google not to list this page
+updated: 2026-11-01   # change this every time you edit the file
+
+name: Kendal Jacobsen
+grad_year: 2029
+positions:            # e.g. SS / 2B
+bats:                 # R, L, or S
+throws:               # R or L
+height:               # e.g. 5'7"
+high_school:          # school name, city, state
+club_team: Fireballs 16U – Manley
+jersey:
+
+# Short line under her name. Optional.
+headline:
+
+# Photo file goes in src/assets/photos/. Write just the file name, e.g. kendal-action.jpg
+photo:
+photo_alt:            # one line describing the photo, e.g. Kendal turning a double play
+
+video:
+  youtube:            # YouTube link (unlisted is fine)
+  link:               # any other video page, e.g. Hudl; shows as a button
+
+gpa:                  # e.g. 3.9
+gpa_note:             # e.g. unweighted
+tests:
+  # SAT: 1300
+  # PSAT: 1200
+
+# Copy from GameChanger. Group names and stat names are up to you; they show in this order.
+stats_as_of:          # date the numbers were pulled
+stats_note:           # e.g. Fall 2026 club season · GameChanger
+stats:
+  Hitting:
+    AVG:
+    OBP:
+    SLG:
+    OPS:
+  Fielding:
+    FPCT:
+
+# Past events drop off the page on their own. featured: true highlights one.
+# Locations at the city or complex level only.
+schedule:
+  - name: Triple Crown Colorado Sparkler
+    start: 2027-06-27
+    end: 2027-07-04
+    location: Denver metro, CO
+    division: Open
+    featured: true
+
+# Label: email address. The first one is her main "Email" button.
+contact:
+  Kendal:
+  Parent:
+
+# Label: link. Shown as buttons, in this order.
+links:
+  Instagram:
+  SportsRecruits:
+  NCSA:
+  Hudl:
+  GameChanger:
