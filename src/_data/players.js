@@ -44,6 +44,10 @@ function normalize(slug, p) {
     .filter((e) => e.end >= today)
     .sort((a, b) => a.start.localeCompare(b.start));
   const contact = compactMap(p.contact);
+  const nameParts = String(p.name || "").trim().split(/\s+/);
+  // The first three numbers of the first stats group are shown big at the top of the page.
+  const [spotlightGroup, spotlightItems] = Object.entries(stats)[0] || [];
+  const spotlight = Object.entries(spotlightItems || {}).slice(0, 3);
 
   return {
     ...p,
@@ -56,7 +60,10 @@ function normalize(slug, p) {
     schedule: events,
     contact,
     mainEmail: Object.values(contact)[0] || "",
-    firstName: String(p.name || "").split(" ")[0],
+    firstName: nameParts[0],
+    lastName: nameParts.slice(1).join(" "),
+    spotlight,
+    spotlightGroup: spotlightGroup || "",
     links: compactMap(p.links),
   };
 }

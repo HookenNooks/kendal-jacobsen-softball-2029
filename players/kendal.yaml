@@ -5,29 +5,30 @@
 # - Dates are written YYYY-MM-DD.
 # - Privacy: email only. No phone numbers, home address, or school schedule.
 
-published: false      # set to true when the real content is in; until then she isn't on the live site
+published: true       # set to false to take her page off the live site
 searchable: true      # false = ask Google not to list this page
 updated: 2026-11-01   # change this every time you edit the file
 
 name: Kendal Jacobsen
 grad_year: 2029
-positions:            # e.g. SS / 2B
-bats:                 # R, L, or S
-throws:               # R or L
-height:               # e.g. 5'7"
-high_school:          # school name, city, state
+positions: 2B / SS / OF   # primary first
+bats: R               # R, L, or S
+throws: R             # R or L
+height: 5'1"
+high_school: Sunset High School, Portland, OR   # school name, city, state
+hs_jersey: 1
 club_team: Fireballs 16U – Manley
-jersey:
+club_jersey: 16       # also shown at the top of the page
 
 # Short line under her name. Optional.
-headline:
+headline: Smart, steady 2B with a strong arm and a short swing that drives the ball.
 
 # Photo file goes in src/assets/photos/. Write just the file name, e.g. kendal-action.jpg
-photo:
-photo_alt:            # one line describing the photo, e.g. Kendal turning a double play
+photo: kendal-ready.jpg
+photo_alt: Kendal in a ready stance at second base
 
 video:
-  youtube:            # YouTube link (unlisted is fine)
+  youtube: https://youtu.be/8nPtK6kkgs8   # YouTube link (unlisted is fine)
   link:               # any other video page, e.g. Hudl; shows as a button
 
 gpa:                  # e.g. 3.9
@@ -37,36 +38,68 @@ tests:
   # PSAT: 1200
 
 # Copy from GameChanger. Group names and stat names are up to you; they show in this order.
-stats_as_of:          # date the numbers were pulled
-stats_note:           # e.g. Fall 2026 club season · GameChanger
+# The first three numbers of the first group are also shown big at the top of the page.
+stats_as_of: 2026-11-01   # date the numbers were pulled
+stats_note: GameChanger
 stats:
-  Hitting:
-    AVG:
-    OBP:
-    SLG:
-    OPS:
-  Fielding:
-    FPCT:
+  Summer 2026 · Oregon Rebels 14U:
+    AVG: .391
+    OBP: .437
+    OPS: .905
+    SLG: .469
+    H: 25
+    2B: 5
+    RBI: 13
+    R: 8
+    BB: 2
+    SO: 11
+    PA: 71
+  Fall 2026 · Fireballs 16U:
+    AVG: .256
+    OBP: .365
+    OPS: .668
+    SLG: .302
+    H: 11
+    2B: 2
+    RBI: 10
+    R: 15
+    BB: 5
+    SO: 4
+    PA: 52
+  # Fielding left off on purpose: small summer sample (injury); defense shows better on video.
 
 # Past events drop off the page on their own. featured: true highlights one.
 # Locations at the city or complex level only.
+# logo: file name in src/assets/logos/ (optional).
 schedule:
+  - name: USA Preps Best of the Best Instructional Camp
+    start: 2027-01-15
+    location: Las Vegas, NV
+    logo: usa-preps-best-of-the-best.png
+  - name: USA Preps Best of the Best Season Finale
+    start: 2027-01-16
+    end: 2027-01-18
+    location: Las Vegas, NV
+    division: 16U
+    logo: usa-preps-best-of-the-best.png
   - name: Triple Crown Colorado Sparkler
     start: 2027-06-27
     end: 2027-07-04
     location: Denver metro, CO
     division: Open
     featured: true
+    logo: triple-crown-colorado-sparkler.png
 
 # Label: email address. The first one is her main "Email" button.
 contact:
-  Kendal:
-  Parent:
+  Kendal: kendaljacobsen2029@gmail.com
+  Parent: jacobsen.e@me.com
 
 # Label: link. Shown as buttons, in this order.
 links:
-  Instagram:
-  SportsRecruits:
-  NCSA:
+  SportsRecruits: https://my.sportsrecruits.com/athlete/kendal_jacobsen
+  NCSA: https://recruit-match.ncsasports.org/clientrms/athlete_profiles/14989277
+  FieldLevel: https://www.fieldlevel.com/app/profile/kendal.jacobsen.2724163/softball
+  GameChanger: https://web.gc.com/athlete/kendaljacobsen16
+  Instagram: https://www.instagram.com/kendaljacobsen_2029/
   Hudl:
-  GameChanger:
