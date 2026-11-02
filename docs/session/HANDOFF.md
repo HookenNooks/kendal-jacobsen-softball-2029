@@ -2,6 +2,12 @@
 
 Newest first. One entry per session.
 
+## 2026-11-01 (part 2)
+- Committed and pushed the rebuild to main (31fe336). Pages not enabled yet, so the first deploy run is expected to fail; rerun it after enabling.
+- A test build with a published player caught two bugs, both fixed before the push: the `htmlBaseUrl` filter needs `HtmlBasePlugin` added explicitly, and the home-page redirect has to be relative (`./kendal/`) because script and meta-refresh URLs don't get the path prefix.
+- Gotcha: to test a live-style build, copy `sample.yaml` to a temp player with `published: true` and build with `--pathprefix=/kendal-jacobsen-softball-2029/ --output=<scratch dir>`, then delete the temp player.
+- Phase 4 will be done by Q&A: Erik answers questions, Claude edits `kendal.yaml`.
+
 ## 2026-11-01
 - Reviewed the repo (only a 2-line README). Decided to start fresh in the same repo and keep the GitHub remote.
 - Chose Eleventy 3 + YAML data files + GitHub Pages via Actions. Rejected: page loading JSON in the browser (slower, blank link previews) and a custom Python script (more to maintain).
