@@ -13,6 +13,11 @@ This works from GitHub's website too: open the file, click the pencil, edit, the
 
 Leave a field blank to hide it. Past tournaments drop off the page on their own.
 
+- The first three numbers of the first stats group are shown big at the top of the page, so list the best season and stats first.
+- Event logos go in `src/assets/logos/`; add `logo: file.png` to the event.
+- Photos go in `src/assets/photos/`. The photo fills the top of the page, so use a tall (4:5) crop about 1080×1350, with room at the bottom for the name.
+- Colors are set at the top of `src/_includes/style.css` (`--ink`, `--gold`).
+
 ## Preview on your computer
 
 ```

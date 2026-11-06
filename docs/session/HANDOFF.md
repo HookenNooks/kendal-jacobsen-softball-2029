@@ -2,6 +2,16 @@
 
 Newest first. One entry per session.
 
+## 2026-11-01 (part 3)
+- Filled in Kendal's profile by Q&A and published her page (d250e8c). Live and verified: assets load, og:image has the path prefix, sample stays 404.
+- Split `jersey` into `club_jersey` and `hs_jersey`, each on its own row under its team (Erik rejected merging the number into the team name).
+- Stats: Summer 2026 (Oregon Rebels 14U) first, Fall 2026 (Fireballs) second. Fielding left off on purpose (small sample, injury). MVP/Stayton pickup games skipped. GPA blank by choice.
+- Redesigned to "athletic poster": full-bleed photo hero, outlined club number, stat spotlight (first 3 stats of the first group, computed in the loader), dark showcase/closing bands, black + gold, Barlow Condensed from Google Fonts. Colors at top of `style.css`.
+- Added event `logo:` field (files in `src/assets/logos/`, shown on white tiles for dark mode). Colorado logo had its black background removed with PIL flood fill.
+- Photos: crop with PIL and save without EXIF (strips metadata). Hero photo is 1080×1350 with dirt at the bottom for the name.
+- Gotcha: headless Chrome won't render below ~500px wide; for phone screenshots, load the page in a 390px iframe. It also follows system dark mode; pass `--blink-settings=preferredColorScheme=1` for light.
+- Gotcha: `ELEVENTY_RUN_MODE=serve` can't be forced on a plain build; to see drafts, run `eleventy --serve` on a spare port and curl it.
+
 ## 2026-11-01 (part 2)
 - Committed and pushed the rebuild to main (31fe336). Pages not enabled yet, so the first deploy run is expected to fail; rerun it after enabling.
 - A test build with a published player caught two bugs, both fixed before the push: the `htmlBaseUrl` filter needs `HtmlBasePlugin` added explicitly, and the home-page redirect has to be relative (`./kendal/`) because script and meta-refresh URLs don't get the path prefix.
